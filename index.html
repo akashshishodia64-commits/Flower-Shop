@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Noddy Phool Bazaar - Online Flower Shop India</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-lotus"></i>
+                <h1>Noddy Phool Bazaar</h1>
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#products">Flowers</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Fresh Flowers Delivered Across India</h2>
+            <p>सुंदर फूल हर अवसर के लिए 
+
+            </p>
+            <button class="cta-button" onclick="scrollToProducts()">Shop Now / अभी खरीदें</button>
+        </div>
+        <div class="hero-image">
+            <img src="./images/download-removebg-preview.png" alt="Beautiful Indian Flowers">
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Beautiful Collection</h2>
+            <p class="section-subtitle">Perfect for Diwali, Holi, Weddings & All Indian Festivals</p>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('all')">All Flowers</button>
+                <button class="filter-btn" onclick="filterProducts('roses')">Roses</button>
+                <button class="filter-btn" onclick="filterProducts('mixed')">Festival Special</button>
+                <button class="filter-btn" onclick="filterProducts('exotic')">Premium</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded by JavaScript -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: ₹<span id="cartTotal">0</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutOverlay">
+        <div class="checkout-modal">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button class="close-modal" onclick="hideCheckout()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="checkout-form" id="checkoutForm">
+                <div class="form-group">
+                    <label for="customerName">Full Name / पूरा नाम</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number / फोन नंबर</label>
+                    <input type="tel" id="customerPhone" required placeholder="+91 XXXXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddress">Delivery Address / डिलीवरी पता</label>
+                    <textarea id="deliveryAddress" rows="3" required placeholder="House No., Street, Area, City, State, PIN Code"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryDate">Delivery Date / डिलीवरी की तारीख</label>
+                    <input type="date" id="deliveryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="specialMessage">Special Message (Optional) / विशेष संदेश</label>
+                    <textarea id="specialMessage" rows="2" placeholder="Any special instructions or message for the recipient"></textarea>
+                </div>
+                <div class="order-summary">
+                    <h4>Order Summary / ऑर्डर सारांश</h4>
+                    <div id="orderItems"></div>
+                    <div class="total-amount">
+                        <strong>Total Amount: ₹<span id="orderTotal">0</span></strong>
+                    </div>
+                    <p class="payment-note">💳 Cash on Delivery Available | UPI, Cards Accepted</p>
+                </div>
+                <button type="submit" class="place-order-btn">Place Order / ऑर्डर करें</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Phool Bazaar</h3>
+                    <p>Fresh flowers delivered across India since 2025</p>
+                    <p>भारत में ताज़े फूलों की डिलीवरी</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#products">Flowers</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 9568586052</p>
+                    <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91f8fff7fed1e1f9fefefdf3f0ebf0f0e3bff8ff">[guptaaman27154@gmail.com]</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Serving All Major Indian Cities</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Payment Methods</h4>
+                    <p> UPI, Credit/Debit Cards</p>
+                    <p> Cash on Delivery</p>
+                    <p> PhonePe, Google Pay, Paytm</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Noddy Phool Bazaar. All rights reserved. | Made in India 🇮🇳</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="./script.js"></script>
+</body>
+
+</html>
